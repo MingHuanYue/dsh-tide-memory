@@ -1,3 +1,6 @@
 _tmp_dshhome/
+_tmp_smoke/
+_tmp_inject/
 node_modules/
 *.log
+*.tgz

@@ -1,5 +1,9 @@
 # 潮汐记忆 · dsh-tide-memory
 
+[![DSH Plugin Hub](https://img.shields.io/badge/DSH-Plugin%20Hub-1f6feb)](https://dsh-plugin.org/)
+[![license](https://img.shields.io/badge/license-MIT-green)](./LICENSE)
+[![dsh](https://img.shields.io/badge/dsh-%3E%3D0.1.7--rc.1-blue)](https://www.deepseek.com/harness/)
+
 给 DeepSeek Harness 里的会话一份**会淡忘、会过时、看得见**的长期记忆。
 
 别人的记忆插件多数是「存下来 + 全塞回去」；潮汐记忆的取舍是：
@@ -24,12 +28,21 @@ idf 用记忆库自己的 df 现算。少一份词典，换个领域也不会水
 
 ## 装上
 
+从 npm（推荐）：
+
 ```bash
-dsh plugin --profile desktop add dsh-tide-memory
-# 装完重启一次 DSH
+dsh plugin --profile desktop add dsh-tide-memory   # 桌面端
+dsh plugin --profile web add dsh-tide-memory       # 命令行 web 端
+# 装完重启一次 DSH，设置页里才会出现「潮汐记忆」
 ```
 
-从源码装：
+直接从 GitHub 装（想跟最新代码，或还没发 npm 的时候）：
+
+```bash
+dsh plugin --profile desktop add github:MingHuanYue/dsh-tide-memory
+```
+
+本地源码装：
 
 ```bash
 dsh plugin --profile desktop add file:D:/path/to/dsh-tide-memory
@@ -103,6 +116,22 @@ $p = 'D:\nodejs-data\dsh-home\profiles\desktop\package.json'
 ```bash
 git config --global url."https://github.com/".insteadOf "git+ssh://git@github.com/"
 ```
+
+## 权限与隐私
+
+- 只读写 `$DSH_HOME/tide-memory/` 下的自己的 JSONL 文件，不碰别的目录。
+- **不联网**：没有云端、没有 embedding 服务、没有 key。分词和检索全在本地算，一次几十毫秒。
+- 记忆只有两个来源：模型主动调 `tide_remember`，或者你在设置页手动记一条。
+- 每轮注入了哪几句，会同时写进 `trace.jsonl`，设置页里能直接看（C / P / act 三个数）。
+- 想清空：删掉 `stores/` 下对应的 `*.jsonl`，或者在设置页逐条删。卸载插件不会删数据，重装还在。
+
+## 兼容性
+
+- DSH >= 0.1.7-rc.1（见 `package.json` 的 `engines.dsh`），Node >= 22。
+- 图形界面挂在设置页，桌面端和 web 端都能用（client 走 `dsh.client` 声明，platform: web）。
+- 记忆库按**工作区**分桶：同一个工作目录下的会话共用一个库，换项目不串味。
+- 已知显示层小瑕疵：设置页的库下拉里偶尔会出现一行 `ws-xxx__` 的重复名，
+  那是文件名把中文折成了下划线（同一份数据），不影响读写，重启后按 `safeKey` 归并就没了。
 
 ## License
 

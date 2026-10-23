@@ -3,7 +3,7 @@ import { EventEmitter } from 'node:events'
 process.env.DSH_HOME = 'D:/DSH插件/projects/dsh-tide-memory/_tmp_smoke'
 rmSync(process.env.DSH_HOME, { recursive: true, force: true })
 
-const mod = await import('./lib/index.js')
+const mod = await import('../lib/index.js')
 const handlers = new Map()
 const tools = []
 const ctx = {

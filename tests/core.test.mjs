@@ -1,7 +1,7 @@
 import { rmSync } from 'node:fs'
 rmSync(new URL('./_tmp_dshhome', import.meta.url), { recursive: true, force: true })
 process.env.DSH_HOME = 'D:/DSH插件/projects/dsh-tide-memory/_tmp_dshhome'
-const m = await import('./lib/index.js')
+const m = await import('../lib/index.js')
 const T = m.__test
 
 const key = 'ws-test'
