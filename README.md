@@ -28,21 +28,21 @@ idf 用记忆库自己的 df 现算。少一份词典，换个领域也不会水
 
 ## 装上
 
-从 npm（推荐）：
+从 GitHub 装（推荐，插件市场也是这么发命令的）：
 
 ```bash
-dsh plugin --profile desktop add dsh-tide-memory   # 桌面端
-dsh plugin --profile web add dsh-tide-memory       # 命令行 web 端
+dsh plugin --profile desktop add github:MingHuanYue/dsh-tide-memory   # 桌面端
+dsh plugin --profile web add github:MingHuanYue/dsh-tide-memory       # 命令行 web 端
 # 装完重启一次 DSH，设置页里才会出现「潮汐记忆」
 ```
 
-直接从 GitHub 装（想跟最新代码，或还没发 npm 的时候）：
+从 npm 装（发布之后可用）：
 
 ```bash
-dsh plugin --profile desktop add github:MingHuanYue/dsh-tide-memory
+dsh plugin --profile desktop add dsh-tide-memory
 ```
 
-本地源码装：
+本地源码装（改代码调试用）：
 
 ```bash
 dsh plugin --profile desktop add file:D:/path/to/dsh-tide-memory
