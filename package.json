@@ -1,7 +1,7 @@
 {
   "name": "dsh-tide-memory",
-  "version": "0.1.0",
-  "description": "潮汐记忆：给 DSH 里的会话一份会淡忘、会过时、可被看见的长期记忆（带设置页图形界面）",
+  "version": "0.2.0",
+  "description": "一份会忘事的长期记忆。该记的留着，没被想起来的自己淡掉；对不上号的两条不会并排塞给你看。本地跑，不联网，不多花一分钱。",
   "license": "MIT",
   "author": "MingHuanYue",
   "type": "module",

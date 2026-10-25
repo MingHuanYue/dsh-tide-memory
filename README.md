@@ -26,6 +26,11 @@
 再加一条工程上的：**没有 900KB 的用户词典**。分词靠二元组 + 单字（二元组权重 1、单字 0.5），
 idf 用记忆库自己的 df 现算。少一份词典，换个领域也不会水土不服。
 
+## v0.2 改了什么
+
+- **前后的说法对不上时，不再并排塞给你自己看**：写入时如果跟库里某条同类记忆撞了关键词，会记一句「跟这条对不上」；两条都被想起来的场合，只留新的那条，旧的缩进括号里当注脚。传了 `supersedes` 就明确挂成「改过的版本」。谁作废、谁算数，由当场说那句的人判断，插件不替你删。
+- **多了一个「今天翻出来几次、用上几次」的计数**（`pulse.json`）。同机的迭代记忆会读它，把「旧事真被用上了」算成状态好一点——两个插件各写各的文件，谁都没装也不影响谁。
+
 ## 装上
 
 从 GitHub 装（推荐，插件市场也是这么发命令的）：
@@ -52,10 +57,11 @@ dsh plugin --profile desktop add file:D:/path/to/dsh-tide-memory
 
 **给它工具**（模型自己会调）：
 
-- `tide_remember` —— 记一条：text / kind（event 或 fact）/ imp 0~1 / emo 0~1 / keys
+- `tide_remember` —— 记一条：text / kind（event 或 fact）/ imp 0~1 / emo 0~1 / keys / 可选 supersedes（取代哪条）
 - `tide_recall` —— 按线索找：query / limit
 - `tide_forget` —— 标过时（不是删）
 - `tide_stats` —— 库里现在多少条、多少还活着
+- `tide_recall` 和 `tide_remember` 的返回里会带 `conflicts` / `supersedes`，撞车了当场就知道
 
 **给人看的界面**：`设置 → 潮汐记忆`
 
@@ -72,6 +78,7 @@ dsh plugin --profile desktop add file:D:/path/to/dsh-tide-memory
 $DSH_HOME/tide-memory/
 ├── config.json          # 全局设置
 ├── trace.jsonl          # 注入日志（「怎么想起来的」）
+├── pulse.json           # 今天翻了几次、用上几次（跨天自动归零）
 ├── stores/<key>.jsonl   # 每个库一行一条
 └── cold/<key>.jsonl     # 冷宫：淡到快没了又没被想起的（没删，能翻回来）
 ```
