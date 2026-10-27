@@ -1,7 +1,7 @@
 {
   "name": "dsh-tide-memory",
   "version": "0.2.0",
-  "description": "一份会忘事的长期记忆。该记的留着，没被想起来的自己淡掉；对不上号的两条不会并排塞给你看。本地跑，不联网，不多花一分钱。",
+  "description": "一份会忘事的长期记忆。该记的留着，没被想起来的自己淡掉；对不上号的两条不会并排塞给你。证据分低于 0.35 不进上下文，召回的那几句会占 token。本地跑，不联网。",
   "license": "MIT",
   "author": "MingHuanYue",
   "type": "module",
